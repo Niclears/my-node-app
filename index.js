@@ -1,38 +1,57 @@
 const http = require('http');
+const EventEmitter = require('events');
 
 
-const fullName = "Козлов Михаил Денисович";  
-const group = "301";                    
-const journalNumber = 9;                  
+class AppServer extends EventEmitter {
+  constructor() {
+    super();
+    this.server = null;
+    this.port = null;
+  }
 
+  start(port) {
+    this.port = port;
+    this.server = http.createServer((req, res) => {
+      this.emit('request:received', { url: req.url, method: req.method });
 
-function calculatePi(iterations) {
-    let pi = 0;
-    let sign = 1;
-    for (let i = 0; i < iterations; i++) {
-        pi += sign / (2 * i + 1);
-        sign *= -1;
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Hello from Event-Driven Server!');
+    });
+
+    this.server.listen(port, () => {
+      this.emit('server:started', port);
+    });
+  }
+
+  stop() {
+    if (this.server) {
+      this.server.close(() => this.emit('server:stopped'));
     }
-    return pi * 4;
+  }
 }
 
-const iterations = journalNumber * 100000;
-const pi = calculatePi(iterations);
+const app = new AppServer();
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.write('<h1>Информация о студенте</h1>');
-    res.write(`<p><strong>ФИО:</strong> ${fullName}</p>`);
-    res.write(`<p><strong>Группа:</strong> ${group}</p>`);
-    res.write(`<p><strong>Число Пи (вычисленное):</strong> ${pi}</p>`);
-    res.write(`<p><strong>Количество итераций:</strong> ${iterations}</p>`);
-    res.end();
+
+app.on('server:started', (port) => {
+  console.log(`Сервер запущен на порту ${port}`);
 });
 
-const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`Сервер запущен на http://localhost:${PORT}`);
-    console.log(`ФИО: ${fullName}`);
-    console.log(`Группа: ${group}`);
-    console.log(`Число Пи: ${pi}`);
+app.on('request:received', ({ method, url }) => {
+  console.log(`Получен запрос: ${method} ${url}`);
 });
+
+app.on('server:stopped', () => {
+  console.log('Сервер остановлен');
+});
+
+const logger = require('./logger');
+logger.setupLogger(app);
+
+
+app.start(3000);
+
+
+setTimeout(() => {
+  app.stop();
+}, 10000);
