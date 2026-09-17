@@ -5,3 +5,12 @@ logs.txt
 data/
 test-data-promises/
 data-mixed/
+student_*.txt
+project_*/
+data_*.txt
+processed_*.txt
+report_*.json
+source_*/
+backup_*/
+sync_report_*.txt
+manifest.json
