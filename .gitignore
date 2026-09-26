@@ -15,3 +15,8 @@ backup_*/
 sync_report_*.txt
 manifest.json
 monitor.log
+input.txt
+output-*.txt
+students.csv
+errors.log
+big-data-*.json
