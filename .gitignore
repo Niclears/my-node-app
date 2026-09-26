@@ -20,3 +20,4 @@ big-file-downloaded.bin
 certs/
 public/
 secret.txt
+monitor.log
