@@ -14,3 +14,4 @@ source_*/
 backup_*/
 sync_report_*.txt
 manifest.json
+monitor.log
