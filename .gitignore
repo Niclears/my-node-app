@@ -21,3 +21,9 @@ certs/
 public/
 secret.txt
 monitor.log
+input.txt
+output-*.txt
+students.csv
+errors.log
+big-data-*.json
+stream-input.txt
