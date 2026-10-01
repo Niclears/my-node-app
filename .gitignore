@@ -14,4 +14,10 @@ source_*/
 backup_*/
 sync_report_*.txt
 manifest.json
+access.log
+big-file.bin
+big-file-downloaded.bin
+certs/
+public/
+secret.txt
 monitor.log
