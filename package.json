@@ -1,22 +1,30 @@
 {
-  "name": "my-node-app",
+  "name": "my-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI LR №17",
   "main": "index.js",
+  "bin": {
+    "my-cli": "./bin/my-cli.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kozlov Michail Denisovich",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "chalk": "^4.1.2",
+    "cli-progress": "^3.12.0",
+    "commander": "^11.1.0",
     "compression": "^1.8.2",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
+    "inquirer": "^8.2.7",
     "jsonwebtoken": "^9.0.3",
     "koa": "^3.2.1",
     "koa-bodyparser": "^4.4.1",
-    "koa-router": "^14.0.0"
+    "koa-router": "^14.0.0",
+    "ora": "^5.4.1"
   }
 }
