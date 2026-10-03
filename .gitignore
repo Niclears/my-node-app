@@ -23,6 +23,9 @@ secret.txt
 monitor.log
 input.txt
 output-*.txt
+output-pipe.txt
+output-pipeline.txt
+output-chain.txt
 students.csv
 errors.log
 big-data-*.json
