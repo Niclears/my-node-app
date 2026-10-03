@@ -21,3 +21,10 @@ certs/
 public/
 secret.txt
 monitor.log
+input.txt
+output-pipe.txt
+output-pipeline.txt
+output-chain.txt
+students.csv
+errors.log
+stream-input.txt
